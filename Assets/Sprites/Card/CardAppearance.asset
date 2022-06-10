@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f44b277050913498e13b1547781ec7, type: 3}
+  m_Name: CardAppearance
+  m_EditorClassIdentifier: 
+  spriteArray:
+  - {fileID: 21300000, guid: 60aabcc4f10e013439c09db6bb762c69, type: 3}
+  - {fileID: 21300000, guid: af5eed2c3d1051849a04bfb74c65ce44, type: 3}
+  - {fileID: 21300000, guid: 644ac904e2ee17d4999c68a3e53ada99, type: 3}
+  - {fileID: 21300000, guid: a4cb3596431cacd4ba665499925acc72, type: 3}
+  - {fileID: 21300000, guid: 3c547052ff901d54386f7336b1680795, type: 3}

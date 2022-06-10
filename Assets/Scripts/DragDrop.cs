@@ -4,66 +4,118 @@ using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
-    public GameObject Canvas;
-    public GameObject Drop_Zone;
+    private GameObject canvas;
+    private CardPlacing playerArea;
+    private Card card;
 
-    private bool isDragging = false;
-    private GameObject startParent;
-    private Vector2 startPosition;
-    private GameObject drop_Zone;
+    private CardPlacing dropZone;
+    private CardPlacing initialPlacing;
+    private bool isDragging;
     private bool isOverDropZone;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Canvas = GameObject.Find("Canvas");
-        Drop_Zone = GameObject.Find("Drop_Zone"); // apaga depois essa linha
+        canvas = GameObject.Find("Canvas");
+        playerArea = canvas.transform.Find("Player Area").GetComponent<CardPlacing>();
+        card = GetComponent<Card>();
+        isDragging = false;
+        isOverDropZone = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isOverDropZone = true;
-        drop_Zone = collision.gameObject;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Drop_Zone"))
+        {
+            isOverDropZone = true;
+            dropZone = collision.gameObject.GetComponent<CardPlacing>();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        isOverDropZone = false;
-        drop_Zone = null;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Drop_Zone"))
+        {
+            isOverDropZone = false;
+            dropZone = null;
+        }
     }
 
     // a carta está sendo arrastada
     public void StartDrag()
     {
-        isDragging = true;
-        startParent = transform.parent.gameObject;
-        startPosition = transform.position;
+        if(card.Interactive)
+        {
+            isDragging = true;
+            initialPlacing = transform.parent.GetComponent<CardPlacing>();
+
+            transform.SetParent(canvas.transform);
+            card.transform.localEulerAngles = 0 * Vector3.forward;
+        }
     }
 
     // SetParent serve pra modificar quem é pai de quem, consequentemente o que fica em cima do que
     // a carta não está sendo arrastada
     public void EndDrag()
     {
-        isDragging = false;
-        if (isOverDropZone)
+        if(card.Interactive)
         {
-            transform.SetParent(drop_Zone.transform, false);
+            isDragging = false;
+
+            if (isOverDropZone)
+            {
+                if (initialPlacing != dropZone)
+                {
+                    initialPlacing.RemoveCard(card);
+                    FreeDropZoneIfOccupied();
+                    dropZone.AddCard(card);
+                }
+                else
+                {
+                    initialPlacing.ReturnCardToPosition(card);
+                }
+            }
+            else
+            {
+                if (initialPlacing != playerArea)
+                {
+                    initialPlacing.RemoveCard(card);
+                    playerArea.AddCard(card);
+                }
+                else
+                {
+                    initialPlacing.ReturnCardToPosition(card);
+                }
+            }
         }
-        else 
+    }
+
+    private void FreeDropZoneIfOccupied()
+    {
+        Card extraCard = null;
+        if (card is Spice)
         {
-            transform.position = startPosition;
-            transform.SetParent(startParent.transform, false);
+            extraCard = ((FieldPlacing)dropZone).SpiceCard;
+        }
+        else if (card is Monster)
+        {
+            extraCard = ((FieldPlacing)dropZone).MonsterCard;
+        }
+
+        if (extraCard != null)
+        {
+            dropZone.RemoveCard(extraCard);
+            playerArea.AddCard(extraCard);
         }
     }
 
     // Update is called once per frame
     // Atualizando a posição inicial da carta
-    void Update()
+    private void Update()
     {
         if (isDragging) 
         {
             transform.position = new Vector2(Input.mousePosition.x,  Input.mousePosition.y);
-            transform.SetParent(Canvas.transform, true);
         }
     }
 }
