@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 848a78e37069ec74cad8734239cece42
+  m_SerializeEntries:
+  - m_GUID: 60aabcc4f10e013439c09db6bb762c69
+    m_Address: Assets/Sprites/Card/card_back.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: af5eed2c3d1051849a04bfb74c65ce44
+    m_Address: Assets/Sprites/Card/card_front_doce.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 644ac904e2ee17d4999c68a3e53ada99
+    m_Address: Assets/Sprites/Card/card_front_hortalica.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a4cb3596431cacd4ba665499925acc72
+    m_Address: Assets/Sprites/Card/card_front_salgado.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c547052ff901d54386f7336b1680795
+    m_Address: Assets/Sprites/Card/card_front_tempero.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 76b8775e444f9fa429be7044bd18c647
+    m_Address: Assets/Sprites/Card/CardAppearance.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7c47255f6b40b2e4194b2948dcb3eac4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 719b1fc715ea8bc4293e9a409fc24ec9, type: 2}
+    - {fileID: 11400000, guid: f908707fce04d254b8bbd5e7e5d5b7e2, type: 2}
