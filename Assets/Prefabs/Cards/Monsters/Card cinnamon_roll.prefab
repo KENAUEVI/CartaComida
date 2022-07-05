@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfFoodmon: 0
-  power: 0
+  power: 70
 --- !u!114 &7349323467280943740
 MonoBehaviour:
   m_ObjectHideFlags: 0
